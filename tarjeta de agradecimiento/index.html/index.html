@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Un gesto de gratitud</title>
+    <!-- Fuentes elegantes de Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Paleta de colores: Verde bosque muy oscuro, casi negro, con acentos en oro viejo */
+        :root {
+            --bg-color: #080c0a;
+            --card-bg: #111a15;
+            --text-main: #e5e7eb;
+            --text-muted: #9ca3af;
+            --accent: #c5a059;
+            --accent-glow: rgba(197, 160, 89, 0.2);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            background-image: radial-gradient(circle at 50% 0%, #16241d 0%, var(--bg-color) 70%);
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 400px; /* Tamaño ideal para celular */
+            padding: 2rem;
+            position: relative;
+        }
+
+        /* Pantalla de Selección */
+        #selector-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        #selector-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+            position: absolute;
+            transform: translateY(-20px);
+        }
+
+        .title-main {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            text-align: center;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .btn-name {
+            background: transparent;
+            border: 1px solid rgba(197, 160, 89, 0.4);
+            color: var(--text-main);
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .btn-name:hover, .btn-name:active {
+            background: var(--accent-glow);
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: scale(0.98);
+        }
+
+        /* Pantalla de la Tarjeta */
+        #card-screen {
+            opacity: 0;
+            pointer-events: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -45%);
+            width: 90%;
+            max-width: 380px;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        #card-screen.visible {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translate(-50%, -50%);
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid rgba(197, 160, 89, 0.15);
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05);
+            position: relative;
+        }
+
+        .card::before {
+            content: '"';
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 6rem;
+            color: var(--accent-glow);
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            line-height: 1;
+        }
+
+        .greeting {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .message-body {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--text-main);
+            margin-bottom: 2rem;
+            font-weight: 300;
+            text-align: justify;
+        }
+
+        .sign-off {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            color: var(--accent);
+            text-align: right;
+            border-top: 1px solid rgba(197, 160, 89, 0.2);
+            padding-top: 1rem;
+        }
+
+        /* Botón de regreso discreto */
+        .btn-back {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            margin-top: 1.5rem;
+            width: 100%;
+            text-align: center;
+            cursor: pointer;
+            text-transform: uppercase;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+        }
+
+        .btn-back:hover, .btn-back:active {
+            opacity: 1;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- Pantalla 1: Selección -->
+        <div id="selector-screen">
+            <h1 class="title-main">Un gesto de gratitud</h1>
+            <p class="subtitle">Selecciona tu nombre</p>
+            
+            <button class="btn-name" onclick="showCard('frida')">Frida</button>
+            <button class="btn-name" onclick="showCard('dulce')">Dulce</button>
+            <button class="btn-name" onclick="showCard('jesse')">Jesse</button>
+        </div>
+
+        <!-- Pantalla 2: La Tarjeta -->
+        <div id="card-screen">
+            <div class="card">
+                <h2 class="greeting" id="card-name">Nombre,</h2>
+                
+                <!-- Aquí se inyectará todo el texto personalizado -->
+                <p class="message-body" id="card-body"></p>
+                
+                <div class="sign-off">
+                    Con aprecio.
+                </div>
+            </div>
+            <button class="btn-back" onclick="goBack()">Volver</button>
+        </div>
+
+    </div>
+
+    <script>
+        // Lógica de personalización con los textos completos
+        const messages = {
+            'frida': {
+                name: 'Frida',
+                body: 'Valoro enormemente que te hayas tomado el espacio para venir. Sé lo que implica tu responsabilidad como jefa de grupo y, aun así, tu gesto de estar presente demuestra la gran persona, líder y compañera que eres. Me diste tranquilidad saber que contaba contigo en un momento tan difícil. Gracias por estar al tanto, realmente significó mucho para mí ver tu apoyo.'
+            },
+            'dulce': {
+                name: 'Dulce',
+                body: 'Quiero agradecerte sinceramente por haber venido. Aunque a veces no coincidimos tanto en el día a día, valoro muchísimo que te hayas tomado el tiempo de estar ahí conmigo. Me hizo sentir bien saber que cuento con personas con tu calidez en momentos donde uno necesita ese apoyo silencioso pero presente. Gracias por tu tiempo y por demostrarme que, a pesar de la distancia habitual, los buenos gestos se notan y se agradecen. Significó mucho para mí.'
+            },
+            'jesse': {
+                name: 'Jesse',
+                body: 'Gracias de verdad por estar ahí. Aunque a veces hablemos poco, ver que te diste el tiempo de acompañarme me dio mucha calma y tranquilidad. De verdad significó mucho para mí. También quiero pedirte una disculpa si sentiste que me distancié un poco después de comer; a veces es complicado para mí procesar estos momentos y tiendo a encerrarme en mis propios pensamientos, pero no fue por falta de aprecio, al contrario. Tu compañía significó muchísimo y valoro que hayas estado ahí.'
+            }
+        };
+
+        const selectorScreen = document.getElementById('selector-screen');
+        const cardScreen = document.getElementById('card-screen');
+        const cardName = document.getElementById('card-name');
+        const cardBody = document.getElementById('card-body');
+
+        function showCard(person) {
+            // Inyectar los datos correspondientes
+            cardName.innerText = messages[person].name + ',';
+            cardBody.innerText = messages[person].body;
+
+            // Animación de transición
+            selectorScreen.classList.add('hidden');
+            
+            // Pequeño retraso para que la tarjeta aparezca suavemente
+            setTimeout(() => {
+                cardScreen.classList.add('visible');
+            }, 400);
+        }
+
+        function goBack() {
+            // Animación inversa
+            cardScreen.classList.remove('visible');
+            
+            setTimeout(() => {
+                selectorScreen.classList.remove('hidden');
+            }, 400);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gracias</title>
+</head>
+<body style="background: #080c0a; color: #fff; font-family: sans-serif; padding: 20px;">
+
+    <h2 style="color: #c5a059;">Gracias por tu apoyo</h2>
+    
+    <div style="margin-bottom: 30px;">
+        <h3 style="color: #c5a059;">Para Frida</h3>
+        <p>Valoro enormemente que te hayas tomado el espacio para venir. Sé lo que implica tu responsabilidad como jefa de grupo y, aun así, tu gesto de estar presente demuestra la gran persona, líder y compañera que eres. Me diste tranquilidad saber que contaba contigo en un momento tan difícil. Gracias por estar al tanto, realmente significó mucho para mí ver tu apoyo.</p>
+    </div>
+
+    <div style="margin-bottom: 30px;">
+        <h3 style="color: #c5a059;">Para Dulce</h3>
+        <p>Quiero agradecerte sinceramente por haber venido. Aunque a veces no coincidimos tanto en el día a día, valoro muchísimo que te hayas tomado el tiempo de estar ahí conmigo. Me hizo sentir bien saber que cuento con personas con tu calidez en momentos donde uno necesita ese apoyo silencioso pero presente. Gracias por tu tiempo y por demostrarme que, a pesar de la distancia habitual, los buenos gestos se notan y se agradecen. Significó mucho para mí.</p>
+    </div>
+
+    <div style="margin-bottom: 30px;">
+        <h3 style="color: #c5a059;">Para Jesse</h3>
+        <p>Gracias de verdad por estar ahí. Aunque a veces hablemos poco, ver que te diste el tiempo de acompañarme me dio mucha calma y tranquilidad. De verdad significó mucho para mí. También quiero pedirte una disculpa si sentiste que me distancié un poco después de comer; a veces es complicado para mí procesar estos momentos y tiendo a encerrarme en mis propios pensamientos, pero no fue por falta de aprecio, al contrario. Tu compañía significó muchísimo y valoro que hayas estado ahí.</p>
+    </div>
+
+</body>
+</html>
